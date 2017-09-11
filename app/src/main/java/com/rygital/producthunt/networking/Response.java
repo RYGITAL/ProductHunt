@@ -1,4 +1,4 @@
-package com.rygital.mvptest.networking;
+package com.rygital.producthunt.networking;
 
 import com.google.gson.annotations.SerializedName;
 

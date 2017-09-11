@@ -3,26 +3,25 @@ package com.rygital.producthunt.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
-public class ProductListResponse {
-    @SerializedName("posts")
+public class CategoriesListResponse {
+    @SerializedName("categories")
     @Expose
-    private List<ProductListData> posts = new ArrayList<ProductListData>();
+    private List<CategoriesListData> categories;
     @SerializedName("status")
     @Expose
     private int status;
 
-    public List<ProductListData> getPosts() {
-        return posts;
+    public List<CategoriesListData> getCategories() {
+        return categories;
     }
 
-    public void setPosts(List<ProductListData> posts) {
-        this.posts = posts;
+    public void setCategories(List<CategoriesListData> categories) {
+        this.categories = categories;
     }
 
     public int getStatus() {

@@ -1,6 +1,6 @@
-package com.rygital.mvptest.networking;
+package com.rygital.producthunt.networking;
 
-import com.rygital.mvptest.BuildConfig;
+import com.rygital.producthunt.BuildConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,17 +42,16 @@ public class NetworkModule {
                     public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
                         Request original = chain.request();
 
-                        //Customize the request
                         Request request = original.newBuilder()
+                                .header("Accept", "application/json")
                                 .header("Content-Type", "application/json")
-                                .removeHeader("Pragma")
-                                .header("Cache-Control", String.format("max-age=%d", BuildConfig.CACHETIME))
+                                .header("Authorization", "Bearer 591f99547f569b05ba7d8777e2e0824eea16c440292cce1f8dfb3952cc9937ff")
+                                .header("Host", "api.producthunt.com")
                                 .build();
 
                         okhttp3.Response response = chain.proceed(request);
                         response.cacheResponse();
 
-                        // Customize or return the response
                         return response;
                     }
                 })

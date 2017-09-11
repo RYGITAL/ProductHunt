@@ -1,6 +1,7 @@
-package com.rygital.mvptest.networking;
+package com.rygital.producthunt.networking;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -37,6 +38,7 @@ public class NetworkError extends Throwable {
     }
 
     public String getAppErrorMessage() {
+        Log.d("LOG_TAG", error.getMessage());
         if (this.error instanceof IOException) return NETWORK_ERROR_MESSAGE;
         if (!(this.error instanceof HttpException)) return DEFAULT_ERROR_MESSAGE;
         retrofit2.Response<?> response = ((HttpException) this.error).response();
