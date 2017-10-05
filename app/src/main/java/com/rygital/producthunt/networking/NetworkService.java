@@ -9,7 +9,7 @@ import rx.Observable;
 
 public interface NetworkService {
     @GET
-    Observable<ProductListResponse> getTechPosts(@Url String url);
+    Observable<ProductListResponse> getPosts(@Url String url);
 
     @GET("/v1/categories")
     Observable<CategoriesListResponse> getCategories();

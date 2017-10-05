@@ -13,12 +13,12 @@ import rx.schedulers.Schedulers;
 public class Service {
     private final NetworkService networkService;
 
-    public Service(NetworkService networkService) {
+    Service(NetworkService networkService) {
         this.networkService = networkService;
     }
 
     public Subscription getProductList(final GetProductListCallback callback, String slug) {
-        return networkService.getTechPosts("/v1/categories/" + slug + "/posts")
+        return networkService.getPosts("/v1/categories/" + slug + "/posts")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(new Func1<Throwable, Observable<? extends ProductListResponse>>() {

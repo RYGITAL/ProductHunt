@@ -2,6 +2,7 @@ package com.rygital.producthunt.ui.home;
 
 import com.rygital.producthunt.models.CategoriesListData;
 import com.rygital.producthunt.models.CategoriesListResponse;
+import com.rygital.producthunt.models.ProductListData;
 import com.rygital.producthunt.models.ProductListResponse;
 import com.rygital.producthunt.networking.NetworkError;
 import com.rygital.producthunt.networking.Service;
@@ -9,7 +10,7 @@ import com.rygital.producthunt.networking.Service;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class HomePresenter {
+class HomePresenter {
     private final Service service;
     private final HomeView homeView;
     private CompositeSubscription subscriptions;
@@ -18,15 +19,15 @@ public class HomePresenter {
     private String categoryName = "Tech";
 
 
-    public CategoriesListResponse categories;
+    CategoriesListResponse categories;
 
-    public HomePresenter(Service service, HomeView homeView) {
+    HomePresenter(Service service, HomeView homeView) {
         this.service = service;
         this.homeView = homeView;
         this.subscriptions = new CompositeSubscription();
     }
 
-    public void getProductList(int id) {
+    void getProductList(int id) {
         homeView.showWait();
 
         if (categories != null && id != -1) {
@@ -52,7 +53,7 @@ public class HomePresenter {
         subscriptions.add(subscription);
     }
 
-    public void getCategoriesList() {
+    void getCategoriesList() {
         if(categories != null) {
             homeView.getCategoriesListSuccess(categories);
             return;
@@ -72,6 +73,10 @@ public class HomePresenter {
         });
 
         subscriptions.add(subscription);
+    }
+
+    void startProductActivity(ProductListData item) {
+        homeView.startProductActivity(item);
     }
 
     public void onStop() {

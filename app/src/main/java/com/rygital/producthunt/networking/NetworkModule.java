@@ -20,7 +20,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Module
 public class NetworkModule {
-    File cacheFile;
+    private File cacheFile;
 
     public NetworkModule(File cacheFile) {
         this.cacheFile = cacheFile;

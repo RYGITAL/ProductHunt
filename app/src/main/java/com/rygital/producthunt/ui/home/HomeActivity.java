@@ -76,14 +76,7 @@ public class HomeActivity extends BaseApp implements HomeView {
                 new HomeAdapter.OnItemClickListener() {
                     @Override
                     public void onClick(ProductListData Item) {
-                        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-
-                        intent.putExtra(ProductActivity.EXTRA_SCR, Item.getScreenshot_url().getImage_url());
-                        intent.putExtra(ProductActivity.EXTRA_TITLE, Item.getName());
-                        intent.putExtra(ProductActivity.EXTRA_DESC, Item.getTagline());
-                        intent.putExtra(ProductActivity.EXTRA_URL, Item.getRedirect_url());
-
-                        startActivity(intent);
+                        presenter.startProductActivity(Item);
                     }
                 });
 
@@ -143,5 +136,17 @@ public class HomeActivity extends BaseApp implements HomeView {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void startProductActivity(ProductListData item) {
+        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+
+        intent.putExtra(ProductActivity.EXTRA_SCR, item.getScreenshot_url().getImage_url());
+        intent.putExtra(ProductActivity.EXTRA_TITLE, item.getName());
+        intent.putExtra(ProductActivity.EXTRA_DESC, item.getTagline());
+        intent.putExtra(ProductActivity.EXTRA_URL, item.getRedirect_url());
+
+        startActivity(intent);
     }
 }

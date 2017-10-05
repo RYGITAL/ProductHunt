@@ -2,7 +2,6 @@ package com.rygital.producthunt.ui.home;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,12 @@ import com.rygital.producthunt.models.ProductListData;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     private final OnItemClickListener listener;
     private List<ProductListData> data;
     private Context context;
 
-    public HomeAdapter(Context context, OnItemClickListener listener) {
+    HomeAdapter(Context context, OnItemClickListener listener) {
         this.listener = listener;
         this.context = context;
     }
@@ -55,26 +54,26 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         return data.size();
     }
 
-    public void clear() {
+    void clear() {
         if (data == null) return;
         data.clear();
         notifyDataSetChanged();
     }
 
-    public void addAll(List<ProductListData> data) {
+    void addAll(List<ProductListData> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
-    public interface OnItemClickListener {
+    interface OnItemClickListener {
         void onClick(ProductListData Item);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDesc, tvUpvotes;
         ImageView background;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
@@ -82,7 +81,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             background = (ImageView) itemView.findViewById(R.id.thumbnail);
         }
 
-        public void click(final ProductListData productListData, final OnItemClickListener listener) {
+        void click(final ProductListData productListData, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
